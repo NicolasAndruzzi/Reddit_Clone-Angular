@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="reddit">
   <head>
     <meta charset="utf-8">
     <title>Reddit Clone</title>
@@ -8,19 +8,60 @@
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/3.0.3/normalize.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="style.css" media="screen" title="no title" charset="utf-8">
   </head>
-  <body>
+  <body ng-controller="controller">
     <header>
       <img src="http://www.siegemedia.com/wp-content/uploads/2014/02/reddit-alien.png" alt="Reddit Img" />
       <div>reddit clone</div>
-      <button type="button">+Submit Post</button>
-      <input type="text" placeholder="Search">
-      <select placeholder="test">
+      <button type="button" ng-click="AddPost()">+Add Post</button>
+      <input type="text" placeholder="Search" ng-model="search.title">
+
+<!-- HOW TO SEARCH 2 THINGS, NOT ALL OR 1 ^^^^^^^-->
+<!-- ALSO, AS PER INSTRUCTIONS... HOW TO SEARCH ALL POSTS AND COMMENTS -->
+
+      <select>
         <option disabled="disabled" selected="selected">Sort By</option>
         <option>Votes</option>
         <option>Date</option>
         <option>Title</option>
       </select>
-      <dropdown placeholder="Colour..." list="colours" selected="colour" property="name"></dropdown>
     </header>
+    <main>
+      <form id="postForm" ng-show="showPostForm" ng-submit="getPost()">
+        <p>Title</p>
+        <p><input type="text" ng-model="title" placeholder="Title" required="" ng-init="title='King in the North'"></p>
+        <p>Author</p>
+        <p><input type="text" ng-model="author" placeholder="Author" required="" ng-init="author='Ned Stark'"></p>
+        <p>Image URL</p>
+        <p><input type="text" ng-model="imgUrl" placeholder="Image URL" required="" ng-init="imgUrl='http://vignette4.wikia.nocookie.net/gameofthrones/images/5/5c/Eddard_1x01.jpg/revision/latest?cb=20120511213934'"></p>
+        <p>Description</p>
+        <p><input type="text" ng-model="description" placeholder="Description" required="" ng-init="description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum metus nulla, lacinia et rutrum at, rutrum id enim. Vivamus diam risus, imperdiet at nunc in, interdum viverra sem. Ut augue elit, facilisis eget mi a, posuere tempus risus. Duis eu lorem non diam iaculis ultrices. Vivamus eget est nec purus volutpat mollis vel quis neque. Aliquam maximus lectus et ultricies iaculis. Donec lacus tortor, accumsan sed fermentum eu, hendrerit sed lorem. In rutrum a ex ut pulvinar. Integer a justo vel diam tempor posuere. Mauris eget mauris vehicula, pharetra nunc quis, tristique metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec augue augue. Phasellus interdum laoreet dolor, non sodales lectus lobortis nec. Nunc interdum metus leo, quis cursus justo iaculis id. Nulla tempor posuere magna, et elementum tortor congue vitae.'"></p>
+        <p><button type="submit">Submit</button>&nbsp;&nbsp;<button type="button" ng-click="CancelPost()">Cancel</button></p>
+      </form>
+      <p>
+        <div id="post" ng-repeat="post in posts | filter:search">
+            <hr>
+            <img src="{{post.imgUrl}}" alt="Img"/>
+            <div id="postTop">
+              <h1>{{post.title}} 	&nbsp;| </h1>
+              <img src="https://cdn4.iconfinder.com/data/icons/defaulticon/icons/png/256x256/arrow-up.png" alt="Up" />
+              <img src="https://cdn4.iconfinder.com/data/icons/defaulticon/icons/png/256x256/arrow-down.png" alt="Down" />
+              <h3>By: {{post.author}}</h3>
+            </div>
+            <p><h5>{{post.description}}</h6></p>
+            <div id="postBottom">
+              <div></div>
+              <div>&#128198; Formatted date of Post 	&nbsp;| 	&nbsp;</div>
+              <div>&#128488; Number of Comments on Post 	&nbsp;| 	&nbsp;</div>
+              <div ng-click="post.AddComment()">&#128394; Create New Comment</div>
+            </div>
+            <br>
+            <form id="commentForm" ng-show="post.showCommentForm" ng-submit="post.GetComment()">
+              <p>Author&nbsp;&nbsp;<input type="text" ng-model="post.commentUsername" placeholder="Username" required="">&nbsp;&nbsp;&nbsp;&nbsp;Description&nbsp;&nbsp;<input type="text" ng-model="post.commentDescription" placeholder="Comment here..." required=""></p>
+              <p><button type="submit">Submit</button>&nbsp;&nbsp;<button type="button" ng-click="post.CancelComment()">Cancel Comment</button>
+            </form>
+            <hr>
+        </div>
+      </p>
+    </main>
   </body>
 </html>

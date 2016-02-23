@@ -9,7 +9,7 @@ header{
 }
 
 header img {
-  width: 6vw;
+  width: 5vw;
   height: 7vh;
   float: left;
 }
@@ -18,11 +18,10 @@ header div {
   line-height: 7vh;
   font-size: 4vh;
   float: left;
+  margin-right: 1vw;
 }
 
 header button {
-  height: 3vh;
-  font-size: 2vh;
   margin: 2vh 1vw 2vh 1vw;
 }
 
@@ -32,4 +31,72 @@ header input {
 
 header select {
   margin: 2vh 1vw 2vh 1vw;
+}
+
+main {
+  position: fixed;
+  width: 100vw;
+  height: 93vh;
+  left: 0;
+  top: 7vh;
+  overflow: scroll;
+}
+
+main #postForm {
+  width: 80vw;
+  height: 43vh;
+  margin-left: 10vw;
+  margin-top: 5vh;
+}
+
+main #postForm input {
+  width: 80vw;
+}
+
+main #post{
+  width: 80vw;
+  min-height: 20vh;
+  margin-left: 10vw;
+  margin-top: 5vh;
+  /*background-color: red;*/
+}
+
+main #post img {
+  width: 10vw;
+  height: 10vw;
+  margin: 1vw;
+  float: left;
+}
+
+main #post #postTop {
+  width: 66vw;
+  min-height: 10vh;
+  margin: 1vw;
+  float: left;
+  /*background-color: blue;*/
+}
+
+main #post #postTop h1 {
+  float: left;
+}
+
+main #post #postTop img {
+  width: 7vh;
+  height: 7vh;
+  margin-top: 1vh;
+  background-color: #F6F6F6;
+  border-radius: 1vh;
+}
+
+main #post #postTop h3 {
+  float: right;
+}
+
+main #post #postBottom div {
+  display: inline-block;
+  /*background-color: green;*/
+}
+
+main #post #commentForm {
+  /*background-color: green;*/
 }
