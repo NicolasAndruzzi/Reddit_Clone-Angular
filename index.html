@@ -38,7 +38,7 @@
         <p><button type="submit">Submit</button>&nbsp;&nbsp;<button type="button" ng-click="CancelPost()">Cancel</button></p>
       </form>
       <p>
-        <div id="post" ng-repeat="post in posts | filter:search">
+        <div id="post" ng-repeat="post in posts | filter:search" ng-init="post.lengthWord='Comments'">
             <hr>
             <img src="{{post.imgUrl}}" alt="Img"/>
             <div id="postTop">
@@ -50,9 +50,9 @@
             <p><h5>{{post.description}}</h6></p>
             <div id="postBottom">
               <div></div>
-              <div>&#128198; Formatted date of Post 	&nbsp;| 	&nbsp;</div>
-              <div>&#128488; Number of Comments on Post 	&nbsp;| 	&nbsp;</div>
-              <div ng-click="post.AddComment()">&#128394; Create New Comment</div>
+              <div>&#128198; Formatted date of Post 	&nbsp;&nbsp;| 	&nbsp;</div>
+              <div>&#128488; {{post.comments.length}} {{post.lengthWord}} on Post 	&nbsp;&nbsp;|  &nbsp;</div>
+              <div ng-click="post.AddComment()">&#128394; Add Comment</div>
             </div>
             <br>
             <form id="commentForm" ng-show="post.showCommentForm" ng-submit="post.GetComment()">

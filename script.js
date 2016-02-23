@@ -42,7 +42,19 @@ app.controller("controller", function($scope){
       console.log("Getting Comment");
       console.log(comment);
       console.log(post.comments);
-    }
+      post.showCommentForm = false;
+
+      post.commentUsername = null;
+      post.commentDescription = null;
+      if (post.comments.length === 1) {
+        post.lengthWord = "Comment"
+        console.log("working");
+      };
+      if (post.comments.length !== 1){
+        post.lengthWord = "Comments"
+        console.log("nodeal");
+      };
+    };
     $scope.posts.push(post);
     $scope.showPostForm = false;
 
@@ -53,22 +65,6 @@ app.controller("controller", function($scope){
     // console.log($scope.posts);
 
   };
-
-
-  // $scope.getComment = function() {
-  //   var comment = {};
-  //   post.title = $scope.commentUsername;
-  //   post.author = $scope.commentDescription;
-  //
-  //   $scope.posts.push(post);
-  //   $scope.showPostForm = false;
-  //
-  //   $scope.title = null;
-  //   $scope.author = null;
-  //   $scope.imgUrl = null;
-  //   $scope.description = null;
-  //   // console.log($scope.posts);
-  // };
 
 
 });
